@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Start_button = new System.Windows.Forms.Button();
             this.MaxValue = new System.Windows.Forms.Label();
@@ -45,7 +45,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.CrossRatio = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.MediumRadioButton2 = new System.Windows.Forms.RadioButton();
+            this.MediumRadioButton1 = new System.Windows.Forms.RadioButton();
+            this.HardRadioButton3 = new System.Windows.Forms.RadioButton();
+            this.HardRadioButton2 = new System.Windows.Forms.RadioButton();
+            this.EasyRadioButton3 = new System.Windows.Forms.RadioButton();
+            this.EasyRadioButton2 = new System.Windows.Forms.RadioButton();
+            this.HardRadioButton1 = new System.Windows.Forms.RadioButton();
+            this.EasyRadioButton1 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
@@ -54,39 +67,40 @@
             this.chart1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(12, 12);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "max";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Blue;
-            series5.Legend = "Legend1";
-            series5.Name = "min";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series6.Legend = "Legend1";
-            series6.Name = "avg";
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
-            this.chart1.Size = new System.Drawing.Size(1188, 486);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "max";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Blue;
+            series2.Legend = "Legend1";
+            series2.Name = "min";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series3.Legend = "Legend1";
+            series3.Name = "avg";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(1258, 595);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
             // Start_button
             // 
-            this.Start_button.Location = new System.Drawing.Point(12, 504);
+            this.Start_button.Location = new System.Drawing.Point(3, 604);
             this.Start_button.Name = "Start_button";
-            this.Start_button.Size = new System.Drawing.Size(96, 59);
+            this.Start_button.Size = new System.Drawing.Size(96, 65);
             this.Start_button.TabIndex = 1;
             this.Start_button.Text = "Start";
             this.Start_button.UseVisualStyleBackColor = true;
@@ -97,7 +111,7 @@
             this.MaxValue.AutoSize = true;
             this.MaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.MaxValue.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.MaxValue.Location = new System.Drawing.Point(264, 504);
+            this.MaxValue.Location = new System.Drawing.Point(890, 651);
             this.MaxValue.Name = "MaxValue";
             this.MaxValue.Size = new System.Drawing.Size(18, 20);
             this.MaxValue.TabIndex = 2;
@@ -108,7 +122,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label1.Location = new System.Drawing.Point(114, 504);
+            this.label1.Location = new System.Drawing.Point(742, 651);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 20);
             this.label1.TabIndex = 3;
@@ -118,7 +132,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(929, 502);
+            this.label2.Location = new System.Drawing.Point(1063, 606);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 4;
@@ -128,7 +142,7 @@
             // 
             this.PopCount.AutoSize = true;
             this.PopCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.PopCount.Location = new System.Drawing.Point(1051, 502);
+            this.PopCount.Location = new System.Drawing.Point(1185, 606);
             this.PopCount.Name = "PopCount";
             this.PopCount.Size = new System.Drawing.Size(13, 13);
             this.PopCount.TabIndex = 5;
@@ -138,7 +152,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label4.Location = new System.Drawing.Point(929, 518);
+            this.label4.Location = new System.Drawing.Point(1063, 622);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 6;
@@ -148,7 +162,7 @@
             // 
             this.GenSize.AutoSize = true;
             this.GenSize.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.GenSize.Location = new System.Drawing.Point(1051, 518);
+            this.GenSize.Location = new System.Drawing.Point(1185, 622);
             this.GenSize.Name = "GenSize";
             this.GenSize.Size = new System.Drawing.Size(13, 13);
             this.GenSize.TabIndex = 7;
@@ -158,7 +172,7 @@
             // 
             this.MutRatio.AutoSize = true;
             this.MutRatio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.MutRatio.Location = new System.Drawing.Point(1052, 535);
+            this.MutRatio.Location = new System.Drawing.Point(1186, 639);
             this.MutRatio.Name = "MutRatio";
             this.MutRatio.Size = new System.Drawing.Size(13, 13);
             this.MutRatio.TabIndex = 8;
@@ -168,7 +182,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label7.Location = new System.Drawing.Point(929, 535);
+            this.label7.Location = new System.Drawing.Point(1063, 639);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 9;
@@ -178,7 +192,7 @@
             // 
             this.CrossRatio.AutoSize = true;
             this.CrossRatio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.CrossRatio.Location = new System.Drawing.Point(1052, 552);
+            this.CrossRatio.Location = new System.Drawing.Point(1186, 656);
             this.CrossRatio.Name = "CrossRatio";
             this.CrossRatio.Size = new System.Drawing.Size(13, 13);
             this.CrossRatio.TabIndex = 8;
@@ -188,18 +202,159 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label9.Location = new System.Drawing.Point(929, 552);
+            this.label9.Location = new System.Drawing.Point(1063, 656);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(55, 13);
             this.label9.TabIndex = 9;
             this.label9.Text = "cross ratio";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.MediumRadioButton2);
+            this.groupBox1.Controls.Add(this.MediumRadioButton1);
+            this.groupBox1.Controls.Add(this.HardRadioButton3);
+            this.groupBox1.Controls.Add(this.HardRadioButton2);
+            this.groupBox1.Controls.Add(this.EasyRadioButton3);
+            this.groupBox1.Controls.Add(this.EasyRadioButton2);
+            this.groupBox1.Controls.Add(this.HardRadioButton1);
+            this.groupBox1.Controls.Add(this.EasyRadioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(105, 604);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(348, 65);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // MediumRadioButton2
+            // 
+            this.MediumRadioButton2.AutoSize = true;
+            this.MediumRadioButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.MediumRadioButton2.Location = new System.Drawing.Point(267, 35);
+            this.MediumRadioButton2.Name = "MediumRadioButton2";
+            this.MediumRadioButton2.Size = new System.Drawing.Size(73, 17);
+            this.MediumRadioButton2.TabIndex = 7;
+            this.MediumRadioButton2.TabStop = true;
+            this.MediumRadioButton2.Text = "medium_2";
+            this.MediumRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // MediumRadioButton1
+            // 
+            this.MediumRadioButton1.AutoSize = true;
+            this.MediumRadioButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.MediumRadioButton1.Location = new System.Drawing.Point(267, 12);
+            this.MediumRadioButton1.Name = "MediumRadioButton1";
+            this.MediumRadioButton1.Size = new System.Drawing.Size(73, 17);
+            this.MediumRadioButton1.TabIndex = 6;
+            this.MediumRadioButton1.TabStop = true;
+            this.MediumRadioButton1.Text = "medium_1";
+            this.MediumRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // HardRadioButton3
+            // 
+            this.HardRadioButton3.AutoSize = true;
+            this.HardRadioButton3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.HardRadioButton3.Location = new System.Drawing.Point(141, 35);
+            this.HardRadioButton3.Name = "HardRadioButton3";
+            this.HardRadioButton3.Size = new System.Drawing.Size(58, 17);
+            this.HardRadioButton3.TabIndex = 5;
+            this.HardRadioButton3.TabStop = true;
+            this.HardRadioButton3.Text = "hard_3";
+            this.HardRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // HardRadioButton2
+            // 
+            this.HardRadioButton2.AutoSize = true;
+            this.HardRadioButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.HardRadioButton2.Location = new System.Drawing.Point(76, 35);
+            this.HardRadioButton2.Name = "HardRadioButton2";
+            this.HardRadioButton2.Size = new System.Drawing.Size(58, 17);
+            this.HardRadioButton2.TabIndex = 4;
+            this.HardRadioButton2.TabStop = true;
+            this.HardRadioButton2.Text = "hard_2";
+            this.HardRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // EasyRadioButton3
+            // 
+            this.EasyRadioButton3.AutoSize = true;
+            this.EasyRadioButton3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EasyRadioButton3.Location = new System.Drawing.Point(141, 12);
+            this.EasyRadioButton3.Name = "EasyRadioButton3";
+            this.EasyRadioButton3.Size = new System.Drawing.Size(59, 17);
+            this.EasyRadioButton3.TabIndex = 3;
+            this.EasyRadioButton3.TabStop = true;
+            this.EasyRadioButton3.Text = "easy_3";
+            this.EasyRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // EasyRadioButton2
+            // 
+            this.EasyRadioButton2.AutoSize = true;
+            this.EasyRadioButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EasyRadioButton2.Location = new System.Drawing.Point(76, 12);
+            this.EasyRadioButton2.Name = "EasyRadioButton2";
+            this.EasyRadioButton2.Size = new System.Drawing.Size(59, 17);
+            this.EasyRadioButton2.TabIndex = 2;
+            this.EasyRadioButton2.TabStop = true;
+            this.EasyRadioButton2.Text = "easy_2";
+            this.EasyRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // HardRadioButton1
+            // 
+            this.HardRadioButton1.AutoSize = true;
+            this.HardRadioButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.HardRadioButton1.Location = new System.Drawing.Point(7, 35);
+            this.HardRadioButton1.Name = "HardRadioButton1";
+            this.HardRadioButton1.Size = new System.Drawing.Size(58, 17);
+            this.HardRadioButton1.TabIndex = 1;
+            this.HardRadioButton1.TabStop = true;
+            this.HardRadioButton1.Text = "hard_1";
+            this.HardRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // EasyRadioButton1
+            // 
+            this.EasyRadioButton1.AutoSize = true;
+            this.EasyRadioButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EasyRadioButton1.Location = new System.Drawing.Point(7, 12);
+            this.EasyRadioButton1.Name = "EasyRadioButton1";
+            this.EasyRadioButton1.Size = new System.Drawing.Size(59, 17);
+            this.EasyRadioButton1.TabIndex = 0;
+            this.EasyRadioButton1.TabStop = true;
+            this.EasyRadioButton1.Text = "easy_1";
+            this.EasyRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(459, 601);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(3, 75);
+            this.label3.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(739, 604);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(3, 75);
+            this.label5.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Location = new System.Drawing.Point(1058, 604);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(3, 75);
+            this.label6.TabIndex = 13;
             // 
             // GeneticAlgorythmChar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1212, 575);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.CrossRatio);
             this.Controls.Add(this.label7);
@@ -213,9 +368,12 @@
             this.Controls.Add(this.Start_button);
             this.Controls.Add(this.chart1);
             this.Name = "GeneticAlgorythmChar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Genetic";
             this.Load += new System.EventHandler(this.GeneticAlgorythmChar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,6 +393,18 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label CrossRatio;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton HardRadioButton1;
+        private System.Windows.Forms.RadioButton EasyRadioButton1;
+        private System.Windows.Forms.RadioButton EasyRadioButton3;
+        private System.Windows.Forms.RadioButton EasyRadioButton2;
+        private System.Windows.Forms.RadioButton HardRadioButton3;
+        private System.Windows.Forms.RadioButton HardRadioButton2;
+        private System.Windows.Forms.RadioButton MediumRadioButton2;
+        private System.Windows.Forms.RadioButton MediumRadioButton1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

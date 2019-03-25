@@ -22,11 +22,13 @@ namespace Char
         public GeneticAlgorythmChar()
         {
             InitializeComponent();
+           
         }
 
         private void Start_button_Click(object sender, EventArgs e)
         {
             this.chart1.Series["max"].Points.Clear();
+            this.chart1.Series["min"].Points.Clear();
             DisplayGeneticParameters();
             //SerialPort serialPort = new SerialPort();
             StartDrawing();
@@ -62,19 +64,68 @@ namespace Char
 
         private void StartDrawing()
         {
-            var _fileLoader = new FileLoader(Env.FILE_NAME);
+            string fileName = ChoseFileToLoad();
+            
+            var _fileLoader = new FileLoader(fileName);
             DataParser dataParser = new DataParser();
             dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
 
             var oTTP = new TTP();
             oTTP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE);
             //oTTP._generationFittnesMap;
-            foreach(KeyValuePair<int, double> pair in oTTP._generationFittnesMap)
+            foreach(KeyValuePair<int, double> pair in oTTP._generationMaxFittnesMap)
             {
                 this.chart1.Series["max"].Points.AddXY(pair.Key, pair.Value);
             }
-            this.MaxValue.Text = oTTP._bestTravelTime.ToString();
+            foreach (KeyValuePair<int, double> pair in oTTP._generationMinFittnesMap)
+            {
+                this.chart1.Series["min"].Points.AddXY(pair.Key, pair.Value);
+            }
+            this.MaxValue.Text = oTTP._bestG.ToString();
             
+        }
+
+        private string ChoseFileToLoad()
+        {
+            string fileName;
+            if (this.EasyRadioButton1.Checked)
+            {
+                fileName = "easy_1.ttp";
+            }
+            else if(this.EasyRadioButton2.Checked)
+            {
+                fileName = "easy_2.ttp";
+            }
+            else if (this.EasyRadioButton3.Checked)
+            {
+                fileName = "easy_3.ttp";
+            }
+            else if (this.MediumRadioButton1.Checked)
+            {
+                fileName = "medium_1.ttp";
+            }
+            else if (this.MediumRadioButton2.Checked)
+            {
+                fileName = "medium_2.ttp";
+            }
+
+            else if(this.HardRadioButton1.Checked)
+            {
+                fileName = "hard_1.ttp";
+            }
+            else if (this.HardRadioButton2.Checked)
+            {
+                fileName = "hard_2.ttp";
+            }
+            else if (this.HardRadioButton3.Checked)
+            {
+                fileName = "hard_3.ttp";
+            }
+            else
+            {
+                fileName = Env.FILE_NAME;
+            }
+            return fileName;
         }
 
         private void DisplayGeneticParameters()

@@ -15,8 +15,12 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
         private Random _rnd;
         //private SubjectTraveller[] _population;
         private double[,] _distanceMatrix;
-        public double _bestTravelTime { get; set; }
-        public Dictionary<int, double> _generationFittnesMap { get; }
+        public double _bestG { get; set; }
+        public double _worstG { get; set; }
+        public double _avgG { get; set; }
+        public Dictionary<int, double> _generationMaxFittnesMap { get; }
+        public Dictionary<int, double> _generationMinFittnesMap { get; }
+        public Dictionary<int, double> _generationAvgFittnesMap { get; }
 
         public TTP()
         {
@@ -25,8 +29,12 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             _distanceMatrix = new double[_container.Dimension, _container.Dimension];
             FillDistanceMatrix(_container._Cities);
             //MaxValue jeśli F function
-            _bestTravelTime = double.MinValue;
-            _generationFittnesMap = new Dictionary<int, double>();
+            _bestG = double.MinValue;
+            _worstG = double.MaxValue;
+            _avgG = 0;
+            _generationMaxFittnesMap = new Dictionary<int, double>();
+            _generationMinFittnesMap = new Dictionary<int, double>();
+            _generationAvgFittnesMap = new Dictionary<int, double>();
 
         }
 
@@ -52,20 +60,27 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 subTrav.TravelTime = FittnesFunction(subTrav);
                 //jeśli FittnesFunctionF to musi być odwrotnie znak nierówności
 
-                if ( subTrav.TravelTime > _bestTravelTime)
+                if ( subTrav.TravelTime > _bestG)
                 {
-                    _bestTravelTime = subTrav.TravelTime;
+                    _bestG = subTrav.TravelTime;
+                }
+                if (subTrav.TravelTime < _worstG)
+                {
+                    _worstG = subTrav.TravelTime;
                 }
 
                 //Console.WriteLine(subTrav); //print to check
             }
-            _generationFittnesMap.Add(0, _bestTravelTime);
+            _generationMaxFittnesMap.Add(0, _bestG);
+            _generationMinFittnesMap.Add(0, _worstG);
+            
 
             //Console.WriteLine(_bestTravelTime);
 
             for (int i=0; i < Env.GENERATION_COUNT; i++)
             {
                 double bestFittnesInGeneration = Double.MinValue;
+                double worstFittnesInGeneration = Double.MaxValue;
                 //SELECT CANDIDATS TO CROSSING
                 //CROSS
                 //MUTATE
@@ -79,21 +94,30 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                     {
                        bestFittnesInGeneration = subTrav.TravelTime;
                     }
-                    if (subTrav.TravelTime > _bestTravelTime)
+                    if (subTrav.TravelTime < worstFittnesInGeneration)
                     {
-                        _bestTravelTime = subTrav.TravelTime;
+                        worstFittnesInGeneration = subTrav.TravelTime;
                     }
-                    
+                    if (subTrav.TravelTime > _bestG)
+                    {
+                        _bestG = subTrav.TravelTime;
+                    }
+                    if (subTrav.TravelTime < _worstG)
+                    {
+                        _worstG = subTrav.TravelTime;
+                    }
+
                 }
-                _generationFittnesMap.Add( i+1, bestFittnesInGeneration);
+                _generationMaxFittnesMap.Add( i+1, bestFittnesInGeneration);
+                _generationMinFittnesMap.Add( i+1, worstFittnesInGeneration);
             }
 
-            foreach(KeyValuePair<int, double> value in _generationFittnesMap)
+            foreach(KeyValuePair<int, double> value in _generationMaxFittnesMap)
             {
                 Console.WriteLine($"Generation number: {value.Key}\nFittnesValue: {value.Value}");
             }
 
-            Console.WriteLine($"The Best is: {_bestTravelTime}");
+            Console.WriteLine($"The Best is: {_bestG}");
             
         }
 
@@ -177,6 +201,7 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 {
                     SubjectTraveller father = TournamentSelection(Env.CROSS_RATE, Env.TOURNAMENT_SIZE,population);
                     child = CrossOverInKindOfUniform(mother, father);
+                    //child = CrossOverOX1(mother, father);
                 }
                 else
                 {
@@ -198,7 +223,9 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             return population.ToList().OrderBy(o => o.TravelTime).ToArray();
         }
 
-        //selekcja turniejowa, wybieramy z całej populacji n osobników i robimy turniej, i wybieramy najlpszego, sprawdzamy czy się ma krzyrzować czy nie i jeśli tak to krzyżujemy z elementem z kolejnego turnieju 
+        //Tournament Selection, wybieramy z całej populacji n osobników i robimy turniej, 
+        // wybieramy najlpszego, 
+        //sprawdzamy czy się ma krzyrzować czy nie i jeśli tak to krzyżujemy z elementem z kolejnego turnieju 
         private SubjectTraveller TournamentSelection(double crossPropabilty ,int tournamentSize, SubjectTraveller[] population)
         {
             List<SubjectTraveller> citiesSelectedToTournament = new List<SubjectTraveller>(tournamentSize);
@@ -274,12 +301,42 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             int firstPoint = ThreadSafeRandom.ThisThreadsRandom.Next(halfOfTripLength-(Convert.ToInt32(halfOfTripLength*0.2))) + Convert.ToInt32(halfOfTripLength * 0.1);
             int secondPoint = ThreadSafeRandom.ThisThreadsRandom.Next(halfOfTripLength-(Convert.ToInt32(halfOfTripLength*0.2))) + Convert.ToInt32(halfOfTripLength * 0.1) + halfOfTripLength;
 
-            SubjectTraveller firstChild = new SubjectTraveller(mother.TripPlan.Length, mother.MutationPropability, mother.FirstCity);
+            SubjectTraveller child = new SubjectTraveller(mother.TripPlan.Length, mother.MutationPropability, mother.FirstCity);
             //SubjectTraveller secondChild = new SubjectTraveller(mother.TripPlan.Length, mother.MutationPropability, mother.FirstCity);
 
-            for( int i = firstPoint; i <= secondPoint; i++)
+            for( int i = firstPoint; i < secondPoint; i++)
             {
-                firstChild.TripPlan[i] = mother.TripPlan[i];
+                child.TripPlan[i] = mother.TripPlan[i];
+            }
+
+            bool flag = true;
+            int childTripPlanNumber = secondPoint + 1;
+            int fatherTripPlanNumber = secondPoint + 1;
+            while(flag)
+            {
+                if( !child.TripPlan.Contains(father.TripPlan[fatherTripPlanNumber - 1]))
+                {
+                    child.TripPlan[childTripPlanNumber - 1] = father.TripPlan[fatherTripPlanNumber - 1];
+                    if (childTripPlanNumber >= child.TripPlan.Length)
+                    {
+                        childTripPlanNumber = 1;
+                    }
+                    else
+                    {
+                        childTripPlanNumber++;
+                    }
+                }
+                
+                if (fatherTripPlanNumber >= child.TripPlan.Length)
+                {
+                    fatherTripPlanNumber = 1;
+                }
+                else
+                {
+                    fatherTripPlanNumber++;
+                }
+                if (childTripPlanNumber == secondPoint)
+                    flag = false;
             }
             
             //jeszcze reszta 
@@ -290,7 +347,7 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             //}
             //jeszcze reszta
 
-            return firstChild;
+            return child;
             //return new SubjectTraveller[2] { firstChild, secondChild };
         }
 
