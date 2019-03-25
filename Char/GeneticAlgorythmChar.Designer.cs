@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneticAlgorythmChar));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Start_button = new System.Windows.Forms.Button();
@@ -63,6 +63,7 @@
             this.MinValue = new System.Windows.Forms.Label();
             this.UniformRadioButton = new System.Windows.Forms.RadioButton();
             this.OX1RadioButton = new System.Windows.Forms.RadioButton();
+            this.WorkingGuard1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.CrossingMethod.SuspendLayout();
@@ -74,31 +75,31 @@
             this.chart1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.Name = "max";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Color = System.Drawing.Color.Blue;
-            series8.Legend = "Legend1";
-            series8.Name = "min";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series9.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series9.Legend = "Legend1";
-            series9.Name = "avg";
-            this.chart1.Series.Add(series7);
-            this.chart1.Series.Add(series8);
-            this.chart1.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "max";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Blue;
+            series2.Legend = "Legend1";
+            series2.Name = "min";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series3.Legend = "Legend1";
+            series3.Name = "avg";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(1258, 595);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -107,7 +108,7 @@
             // 
             this.Start_button.Location = new System.Drawing.Point(3, 604);
             this.Start_button.Name = "Start_button";
-            this.Start_button.Size = new System.Drawing.Size(96, 65);
+            this.Start_button.Size = new System.Drawing.Size(96, 48);
             this.Start_button.TabIndex = 1;
             this.Start_button.Text = "Start";
             this.Start_button.UseVisualStyleBackColor = true;
@@ -242,7 +243,6 @@
             this.MediumRadioButton2.Name = "MediumRadioButton2";
             this.MediumRadioButton2.Size = new System.Drawing.Size(73, 17);
             this.MediumRadioButton2.TabIndex = 7;
-            this.MediumRadioButton2.TabStop = true;
             this.MediumRadioButton2.Text = "medium_2";
             this.MediumRadioButton2.UseVisualStyleBackColor = true;
             // 
@@ -267,7 +267,6 @@
             this.HardRadioButton3.Name = "HardRadioButton3";
             this.HardRadioButton3.Size = new System.Drawing.Size(58, 17);
             this.HardRadioButton3.TabIndex = 5;
-            this.HardRadioButton3.TabStop = true;
             this.HardRadioButton3.Text = "hard_3";
             this.HardRadioButton3.UseVisualStyleBackColor = true;
             // 
@@ -279,7 +278,6 @@
             this.HardRadioButton2.Name = "HardRadioButton2";
             this.HardRadioButton2.Size = new System.Drawing.Size(58, 17);
             this.HardRadioButton2.TabIndex = 4;
-            this.HardRadioButton2.TabStop = true;
             this.HardRadioButton2.Text = "hard_2";
             this.HardRadioButton2.UseVisualStyleBackColor = true;
             // 
@@ -291,7 +289,6 @@
             this.EasyRadioButton3.Name = "EasyRadioButton3";
             this.EasyRadioButton3.Size = new System.Drawing.Size(59, 17);
             this.EasyRadioButton3.TabIndex = 3;
-            this.EasyRadioButton3.TabStop = true;
             this.EasyRadioButton3.Text = "easy_3";
             this.EasyRadioButton3.UseVisualStyleBackColor = true;
             // 
@@ -303,7 +300,6 @@
             this.EasyRadioButton2.Name = "EasyRadioButton2";
             this.EasyRadioButton2.Size = new System.Drawing.Size(59, 17);
             this.EasyRadioButton2.TabIndex = 2;
-            this.EasyRadioButton2.TabStop = true;
             this.EasyRadioButton2.Text = "easy_2";
             this.EasyRadioButton2.UseVisualStyleBackColor = true;
             // 
@@ -315,7 +311,6 @@
             this.HardRadioButton1.Name = "HardRadioButton1";
             this.HardRadioButton1.Size = new System.Drawing.Size(58, 17);
             this.HardRadioButton1.TabIndex = 1;
-            this.HardRadioButton1.TabStop = true;
             this.HardRadioButton1.Text = "hard_1";
             this.HardRadioButton1.UseVisualStyleBackColor = true;
             // 
@@ -327,7 +322,6 @@
             this.EasyRadioButton1.Name = "EasyRadioButton1";
             this.EasyRadioButton1.Size = new System.Drawing.Size(59, 17);
             this.EasyRadioButton1.TabIndex = 0;
-            this.EasyRadioButton1.TabStop = true;
             this.EasyRadioButton1.Text = "easy_1";
             this.EasyRadioButton1.UseVisualStyleBackColor = true;
             // 
@@ -413,12 +407,23 @@
             this.OX1RadioButton.Text = "OX1";
             this.OX1RadioButton.UseVisualStyleBackColor = true;
             // 
+            // WorkingGuard1
+            // 
+            this.WorkingGuard1.AccessibleName = "ActiveLabel";
+            this.WorkingGuard1.BackColor = System.Drawing.Color.White;
+            this.WorkingGuard1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.WorkingGuard1.Location = new System.Drawing.Point(5, 656);
+            this.WorkingGuard1.Name = "WorkingGuard1";
+            this.WorkingGuard1.Size = new System.Drawing.Size(92, 15);
+            this.WorkingGuard1.TabIndex = 17;
+            // 
             // GeneticAlgorythmChar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.WorkingGuard1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.MinValue);
             this.Controls.Add(this.CrossingMethod);
@@ -484,6 +489,7 @@
         private System.Windows.Forms.Label MinValue;
         private System.Windows.Forms.RadioButton OX1RadioButton;
         private System.Windows.Forms.RadioButton UniformRadioButton;
+        private System.Windows.Forms.Label WorkingGuard1;
     }
 }
 

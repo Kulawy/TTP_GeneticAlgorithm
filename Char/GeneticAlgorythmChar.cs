@@ -22,14 +22,17 @@ namespace Char
         public GeneticAlgorythmChar()
         {
             InitializeComponent();
-           
         }
 
         private void Start_button_Click(object sender, EventArgs e)
         {
+            this.WorkingGuard1.BackColor = Color.Red;
+            this.Update();
+
             this.chart1.Series["max"].Points.Clear();
             this.chart1.Series["min"].Points.Clear();
             this.chart1.Series["avg"].Points.Clear();
+            
             DisplayGeneticParameters();
             //SerialPort serialPort = new SerialPort();
             StartDrawing();
@@ -38,6 +41,8 @@ namespace Char
             //var cpuThread = new Thread(new ThreadStart(this.StartDrawing));
             //cpuThread.IsBackground = true;
             //cpuThread.Start();
+            this.WorkingGuard1.BackColor = Color.Green;
+            this.Update();
         }
 
         private void StartDrawingRealTime()
@@ -89,7 +94,7 @@ namespace Char
             }
             this.MaxValue.Text = oTTP._bestG.ToString();
             this.MinValue.Text = oTTP._worstG.ToString();
-            
+
         }
 
         private string ChoseFileToLoad()
