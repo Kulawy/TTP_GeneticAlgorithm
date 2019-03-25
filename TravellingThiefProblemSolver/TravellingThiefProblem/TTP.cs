@@ -82,11 +82,12 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             CrossingType ctD;
             if (crossType == 1)
             {
-                ctD = new CrossingType(CrossOverOX1);
+                ctD = new CrossingType(CrossOverInKindOfUniform);
             }
             else if (crossType == 2)
             {
-                ctD = new CrossingType(CrossOverInKindOfUniform);
+
+                ctD = new CrossingType(CrossOverOX1);
             }
             else
             {
@@ -224,7 +225,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 {
                     SubjectTraveller father = TournamentSelection(Env.CROSS_RATE, Env.TOURNAMENT_SIZE,population);
                     //child = CrossOverInKindOfUniform(mother, father);
-                    child = CrossOverOX1(mother, father);
+                    //child = CrossOverOX1(mother, father);
+                    child = crossType(mother, father);
                 }
                 else
                 {
