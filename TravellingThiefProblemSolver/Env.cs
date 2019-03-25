@@ -16,7 +16,7 @@ namespace TravellingThiefProblemSolver
         //sort type: 1 - greedy on profit, 2-greedy on ratio
         public const int SORT_TYPE = 1;
 
-        public const int TOURNAMENT_SIZE = 20;
+        public const int TOURNAMENT_SIZE = 10;
         //public const int ELITISM = 6;
         //public const int NUM_CITIES = 40;
     }

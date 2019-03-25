@@ -7,8 +7,4 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="KnapsackProblem\" />
-  </ItemGroup>
-
 </Project>

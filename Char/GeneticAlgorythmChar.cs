@@ -29,6 +29,7 @@ namespace Char
         {
             this.chart1.Series["max"].Points.Clear();
             this.chart1.Series["min"].Points.Clear();
+            this.chart1.Series["avg"].Points.Clear();
             DisplayGeneticParameters();
             //SerialPort serialPort = new SerialPort();
             StartDrawing();
@@ -65,13 +66,14 @@ namespace Char
         private void StartDrawing()
         {
             string fileName = ChoseFileToLoad();
-            
+            var crossTypeNumber = this.CrossingMethod.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).TabIndex;
+
             var _fileLoader = new FileLoader(fileName);
             DataParser dataParser = new DataParser();
             dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
 
             var oTTP = new TTP();
-            oTTP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE);
+            oTTP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE, crossTypeNumber);
             //oTTP._generationFittnesMap;
             foreach(KeyValuePair<int, double> pair in oTTP._generationMaxFittnesMap)
             {
@@ -81,7 +83,12 @@ namespace Char
             {
                 this.chart1.Series["min"].Points.AddXY(pair.Key, pair.Value);
             }
+            foreach (KeyValuePair<int, double> pair in oTTP._generationAvgFittnesMap)
+            {
+                this.chart1.Series["avg"].Points.AddXY(pair.Key, pair.Value);
+            }
             this.MaxValue.Text = oTTP._bestG.ToString();
+            this.MinValue.Text = oTTP._worstG.ToString();
             
         }
 
