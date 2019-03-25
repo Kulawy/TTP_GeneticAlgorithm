@@ -1,6 +1,6 @@
 # TTP Solving Explorer
 
-One Paragraph of project description goes here
+Application solving Traveling thief problem using genetic algorithm. It allows you to explore how different parameters and data affect on results and it give you best and worst result which it will find. Also it show You a set of results on each generation in the chart.
 
 ## Screens
 
@@ -22,7 +22,7 @@ Also you could set your parameters on Env class before You run app.
 
 ## Author
 
-* **Jakub Geroń**
+* **{exp:copyright:show} Kulawy 2019**
 
 As a project on PWr for AI laboratory 
 
