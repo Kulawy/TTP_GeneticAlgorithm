@@ -22,7 +22,7 @@ Also you could set your parameters on Env class before You run app.
 
 ## Author
 
-* **{exp:copyright:show} Kulawy 2019**
+* **:copyright: Kulawy 2019**
 
 As a project on PWr for AI laboratory 
 
