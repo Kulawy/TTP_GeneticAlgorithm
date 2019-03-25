@@ -123,7 +123,7 @@ namespace TravellingThiefProblemSolver
         private void SolveTSP()
         {
             TTP oTSP = new TTP();
-            oTSP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE, 1);
+            oTSP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE, 2);
         }
 
         private void SolveKNP()
