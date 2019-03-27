@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravellingThiefProblemSolver.Utilities;
 using static TravellingThiefProblemSolver.TravellingSalesmanProblem.TTP;
 
 namespace TravellingThiefProblemSolver.Model
@@ -71,12 +72,20 @@ namespace TravellingThiefProblemSolver.Model
         {
             if ( how == 1)
             {
-                SortItemMethod sortMethodDelegate = new SortItemMethod(GreedyByProfitItemSort);
+                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByProfitItemSort);
                 SortItemList(sortMethodDelegate);
             }
             else if( how == 2)
             {
-                SortItemMethod sortMethodDelegate = new SortItemMethod(GreedyByProfitItemSort);
+                Shuffle();
+            }
+            else if (how == 3)
+            {
+                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByProfitItemSort);
+                SortItemList(sortMethodDelegate);
+            }
+            else {
+                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByProfitItemSort);
                 SortItemList(sortMethodDelegate);
             }
             
@@ -88,9 +97,9 @@ namespace TravellingThiefProblemSolver.Model
         }
 
 
-        private void GreedyByProfitItemSort()
+        private void AscGreedyByProfitItemSort()
         {
-            ItemsInCity.Sort();
+            //ItemsInCity.Sort();
             for (int i = 0; i < ItemsInCity.Count - 1; i++)
             {
                 for (int j = 0; j < ItemsInCity.Count - 1; j++)
@@ -103,6 +112,38 @@ namespace TravellingThiefProblemSolver.Model
                     }
 
                 }
+            }
+        }
+
+        //
+        private void DescWeightItemSort()
+        {
+            //ItemsInCity.Sort();
+            for (int i = 0; i < ItemsInCity.Count; i++)
+            {
+                for (int j = 0; j < ItemsInCity.Count - 1; j++)
+                {
+                    if (ItemsInCity[j].Weight < ItemsInCity[j + 1].Weight)
+                    {
+                        Item bufor = ItemsInCity[j].Copy();
+                        ItemsInCity[j] = ItemsInCity[j + 1].Copy();
+                        ItemsInCity[j + 1] = bufor;
+                    }
+
+                }
+            }
+        }
+
+        private void Shuffle()
+        {
+            int n = ItemsInCity.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
+                var value = ItemsInCity[k];
+                ItemsInCity[k] = ItemsInCity[n];
+                ItemsInCity[n] = value;
             }
         }
 

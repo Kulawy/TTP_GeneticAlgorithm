@@ -97,6 +97,17 @@ namespace TTPsolverTests
         }
 
 
+        [Test]
+        public void SolveTTPbyGoToNearestCityTest(String fileName)
+        {
+            var _fileLoader = new FileLoader(Env.FILE_NAME);
+            var dataParser = new DataParser();
+            dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
+            TTP_spec ttpSolver = new TTP_spec();
+            ttpSolver.SolveTTPbyGoToNarestCity(1);
+
+
+        }
 
 
         

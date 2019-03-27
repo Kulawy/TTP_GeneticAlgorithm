@@ -78,7 +78,7 @@ namespace Char
             dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
 
             var oTTP = new TTP();
-            oTTP.StartTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE, crossTypeNumber);
+            oTTP.StartGeneticTTP(Env.POP_SIZE, Env.GENERATION_COUNT, Env.SORT_TYPE, Env.MUT_RATE, crossTypeNumber);
             //oTTP._generationFittnesMap;
             foreach(KeyValuePair<int, double> pair in oTTP._generationMaxFittnesMap)
             {
@@ -146,6 +146,13 @@ namespace Char
             this.GenSize.Text = Env.GENERATION_COUNT.ToString();
             this.MutRatio.Text = Env.MUT_RATE.ToString();
             this.CrossRatio.Text = Env.CROSS_RATE.ToString();
+            this.TournamentSize.Text = Env.TOURNAMENT_SIZE.ToString();
+        }
+
+        private void SetGeneticParameters()
+        {
+            //Env.POP_SIZE = Convert.ToInt32(this.PopCount.Text);
+            //Env.GENERATION_COUNT = Convert.ToInt32(this.GenSize.Text);
         }
 
     }

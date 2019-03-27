@@ -9,7 +9,7 @@ using TravellingThiefProblemSolver.Utilities;
 
 namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
 {
-    public class TTP
+    public class TTP_spec
     {
         private DataContainer _container;
         private Random _rnd;
@@ -19,11 +19,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
         public double _worstG { get; set; }
         public double _sumG { get; set; }
         public double _avgG { get; set; }
-        public Dictionary<int, double> _generationMaxFittnesMap { get; }
-        public Dictionary<int, double> _generationMinFittnesMap { get; }
-        public Dictionary<int, double> _generationAvgFittnesMap { get; }
 
-        public TTP()
+        public TTP_spec()
         {
             _rnd = new Random();
             _container = DataContainer.Instance;
@@ -33,33 +30,34 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             _bestG = double.MinValue;
             _worstG = double.MaxValue;
             _sumG = 0;
-            _generationMaxFittnesMap = new Dictionary<int, double>();
-            _generationMinFittnesMap = new Dictionary<int, double>();
-            _generationAvgFittnesMap = new Dictionary<int, double>();
-
         }
 
-        public void StartGeneticTTP(int sizeOfPopulation, int coutOfGenerations, int itemChooseMethod, double mutProp, int crossType)
+        public void SolveTTPbyGoToNarestCity(int itemChooseMethod)
         {
-            //sort items in Cities 1- sortByBestRatio(value/weight)
-            foreach(City c in _container._Cities)
+            foreach (City c in _container._Cities)
             {
                 c.SortItemsBy(itemChooseMethod);
             }
 
-            //INIT POPULATION
+
+
+        }
+
+        public void StartTTP(int sizeOfPopulation, int coutOfGenerations, int itemChooseMethod, double mutProp, int crossType)
+        {
+            foreach(City c in _container._Cities)
+            {
+                c.SortItemsBy(itemChooseMethod);
+            }
+            
             SubjectTraveller[] _population;
             _population = new SubjectTraveller[sizeOfPopulation];
-            //SubjectTraveller[] population = new SubjectTraveller[sizeOfPopulation];
             InitPopulation(_population, mutProp);
             
             //CHECK POPULATION 
             foreach (SubjectTraveller subTrav in _population)
             {
-                //FixSubjectTraveller(subTrav); //no need to fix
-                
                 subTrav.TravelTime = FittnesFunction(subTrav);
-                //jeśli FittnesFunctionF to musi być odwrotnie znak nierówności
 
                 if ( subTrav.TravelTime > _bestG)
                 {
@@ -74,9 +72,6 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 //Console.WriteLine(subTrav); //print to check
             }
             _avgG = _sumG / _population.Length;
-            _generationMaxFittnesMap.Add(0, _bestG);
-            _generationMinFittnesMap.Add(0, _worstG);
-            _generationAvgFittnesMap.Add(0, _avgG);
 
 
             CrossingType ctD;
@@ -93,9 +88,7 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             {
                 ctD = new CrossingType(CrossOverOX1);
             }
-
-            //Console.WriteLine(_bestTravelTime);
-
+            
             for (int i=0; i < Env.GENERATION_COUNT; i++)
             {
                 _sumG = 0;
@@ -131,16 +124,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
 
                 }
                 _avgG = _sumG / _population.Length;
-                _generationMaxFittnesMap.Add( i+1, bestFittnesInGeneration);
-                _generationMinFittnesMap.Add( i+1, worstFittnesInGeneration);
-                _generationAvgFittnesMap.Add(i+1, _avgG);
             }
-
-            //PrintMinMaxAvgForEachGen();
-
-            Console.WriteLine($"The Best is: {_bestG}");
-            Console.WriteLine($"The Worst is: {_worstG}");
-
+           
         }
 
         //Generates random population(subset of chromosoms/solutions ) 
@@ -224,8 +209,6 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 if ( rndNum <= Env.CROSS_RATE)
                 {
                     SubjectTraveller father = TournamentSelection(Env.CROSS_RATE, Env.TOURNAMENT_SIZE,population);
-                    //child = CrossOverInKindOfUniform(mother, father);
-                    //child = CrossOverOX1(mother, father);
                     child = crossType(mother, father);
                 }
                 else
@@ -235,10 +218,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 child.Mutate();
                 if ( !newGeneration.Contains(child))
                     newGeneration.Add(child);
-                //actualPopSize++;
             }
-
-            //_population = newGeneration.ToArray();
+            
             return newGeneration.ToArray();
 
         }
@@ -270,11 +251,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
 
         public SubjectTraveller CrossOverInKindOfUniform(SubjectTraveller mother, SubjectTraveller father)
         {
-            //HashSet<SubjectTraveller> children = new HashSet<SubjectTraveller>();
             SubjectTraveller child = new SubjectTraveller(mother.TripPlan.Length, mother.MutationPropability, mother.FirstCity);
-
-            //double crossingImportanceMother = mother.TravelTime;
-            //double crossingImportanceFather = father.TravelTime;
+            
             double crossingImportanceMother;
             //double crossingImportanceFather;
             if ( mother.TravelTime >= father.TravelTime)
@@ -371,6 +349,7 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
             //return new SubjectTraveller[2] { firstChild, secondChild };
         }
         
+        
         public double FittnesFunction(SubjectTraveller subject)
         {
             int actualWeight = 0;
@@ -462,27 +441,6 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
         }
 
         //end utils for fittness function
-
-
-        private void PrintMinMaxAvgForEachGen()
-        {
-            foreach (KeyValuePair<int, double> value in _generationMaxFittnesMap)
-            {
-                Console.WriteLine($"Generation number: {value.Key}\nMaxFittnesValue: {value.Value}");
-            }
-            foreach (KeyValuePair<int, double> value in _generationAvgFittnesMap)
-            {
-                Console.WriteLine($"Generation number: {value.Key}\nAvgFittnesValue: {value.Value}");
-            }
-            foreach (KeyValuePair<int, double> value in _generationMinFittnesMap)
-            {
-                Console.WriteLine($"Generation number: {value.Key}\nMinFittnesValue: {value.Value}");
-            }
-        }
-
-
-
-
 
     }
 }
