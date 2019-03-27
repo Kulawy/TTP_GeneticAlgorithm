@@ -39,8 +39,48 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
                 c.SortItemsBy(itemChooseMethod);
             }
 
+            SubjectTraveller _solution;
+            List<int> citiesIndexesLeft = new List<int>();
+            _solution = new SubjectTraveller(_container.Dimension - 1, Env.MUT_RATE, _container._Cities[0]);
 
+            foreach (City c in _container._Cities)
+            {
+                citiesIndexesLeft.Add(c.CityId);
+            }
+            //usuwamy 0 bo już jest dodane w FirstCity
+            citiesIndexesLeft.Remove(1);
+            
+            if (_solution.TripPlan.Length != citiesIndexesLeft.Count)
+                throw new Exception("Length of trip is not the same as Count of cities");
 
+            int startPointIndex = 1;
+            for (int i = 0; i < _solution.TripPlan.Length; i++)
+            {
+                startPointIndex = SearchNearestCityIndex(startPointIndex, citiesIndexesLeft);
+                
+                _solution.TripPlan[i] = _container._Cities[startPointIndex-1];
+                citiesIndexesLeft.Remove(startPointIndex);
+            }
+
+            _solution.TravelTime = FittnesFunction(_solution);
+
+            Console.WriteLine(_solution.TravelTime.ToString());
+
+        }
+
+        public int SearchNearestCityIndex(int startCityIndex, List<int> indexLeft)
+        {
+            double minDist = double.PositiveInfinity;
+            int minIndex = -1;
+            for( int i = 0; i < _container.Dimension; i++)
+            {
+                if (startCityIndex-1 != i && indexLeft.Contains(i) && _distanceMatrix[startCityIndex-1, i] < minDist)
+                {
+                    minIndex = i;
+                    minDist = _distanceMatrix[startCityIndex - 1, i];
+                }
+            }
+            return minIndex+1;
         }
 
         public void StartTTP(int sizeOfPopulation, int coutOfGenerations, int itemChooseMethod, double mutProp, int crossType)

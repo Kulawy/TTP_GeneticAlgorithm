@@ -26,10 +26,10 @@ namespace TravellingThiefProblemSolver.Model
 
         }
 
-        public SubjectTraveller(int size, double mutProp, City firstCity)
+        public SubjectTraveller(int sizeOfTripPlan, double mutProp, City firstCity)
         {
             //TripPlan = new int[size];
-            TripPlan = new City[size];
+            TripPlan = new City[sizeOfTripPlan];
             MutationPropability = mutProp;
             FirstCity = firstCity;
         }

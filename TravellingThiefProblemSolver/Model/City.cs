@@ -81,11 +81,11 @@ namespace TravellingThiefProblemSolver.Model
             }
             else if (how == 3)
             {
-                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByProfitItemSort);
+                SortItemMethod sortMethodDelegate = new SortItemMethod(DescWeightItemSort);
                 SortItemList(sortMethodDelegate);
             }
             else {
-                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByProfitItemSort);
+                SortItemMethod sortMethodDelegate = new SortItemMethod(AscGreedyByRatioItemSort);
                 SortItemList(sortMethodDelegate);
             }
             
@@ -96,6 +96,23 @@ namespace TravellingThiefProblemSolver.Model
             itemSelection();
         }
 
+        private void AscGreedyByRatioItemSort()
+        {
+            //ItemsInCity.Sort();
+            for (int i = 0; i < ItemsInCity.Count - 1; i++)
+            {
+                for (int j = 0; j < ItemsInCity.Count - 1; j++)
+                {
+                    if (ItemsInCity[j].Profit/ItemsInCity[j].Weight > ItemsInCity[j + 1].Profit/ ItemsInCity[j+1].Weight)
+                    {
+                        Item bufor = ItemsInCity[j].Copy();
+                        ItemsInCity[j] = ItemsInCity[j + 1].Copy();
+                        ItemsInCity[j + 1] = bufor;
+                    }
+
+                }
+            }
+        }
 
         private void AscGreedyByProfitItemSort()
         {

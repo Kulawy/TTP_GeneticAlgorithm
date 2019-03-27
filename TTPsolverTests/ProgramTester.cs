@@ -93,20 +93,22 @@ namespace TTPsolverTests
             var dataParser = new DataParser();
             dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
 
-
+            Assert.IsTrue(true);
         }
 
 
-        [Test]
+        [TestCase("medium_1.ttp")]
         public void SolveTTPbyGoToNearestCityTest(String fileName)
         {
-            var _fileLoader = new FileLoader(Env.FILE_NAME);
+            //fileName = Env.FILE_NAME;
+            var _fileLoader = new FileLoader(fileName);
             var dataParser = new DataParser();
             dataParser.ParseDataFromFileStream(_fileLoader.GetFileStream());
             TTP_spec ttpSolver = new TTP_spec();
-            ttpSolver.SolveTTPbyGoToNarestCity(1);
+            ttpSolver.SolveTTPbyGoToNarestCity(Env.SORT_TYPE);
 
 
+            Assert.IsTrue(true);
         }
 
 
