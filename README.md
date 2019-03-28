@@ -5,10 +5,10 @@ Application solving Traveling thief problem using genetic algorithm. It allows y
 ## Screens
 
 start page
-![Clear Screen](https://i.ibb.co/4pq7Xgt/main.jpg )
+![Clear Screen](https://i.ibb.co/x3hXjgq/start-Screen.jpg )
 
 sample result page
-![Result Screen](https://i.ibb.co/XX36vJf/result-Screen.jpg)
+![Result Screen](https://i.ibb.co/8NYvdMG/sample-Result-Page.jpg)
 
 
 ### Prerequisites
@@ -29,6 +29,4 @@ As a project on PWr for AI laboratory
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
 
