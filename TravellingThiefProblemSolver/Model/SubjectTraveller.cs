@@ -15,6 +15,7 @@ namespace TravellingThiefProblemSolver.Model
         public City[] TripPlan { set; get; }
         public double TravelTime { set; get; }
         public double MutationPropability { get; }
+        private Random _rnd = new Random();
 
         public SubjectTraveller(SubjectTraveller other)
         {
@@ -23,7 +24,6 @@ namespace TravellingThiefProblemSolver.Model
             Array.Copy(other.TripPlan, TripPlan, other.TripPlan.Length);
             TravelTime = other.TravelTime;
             MutationPropability = other.MutationPropability;
-
         }
 
         public SubjectTraveller(int sizeOfTripPlan, double mutProp, City firstCity)
@@ -107,7 +107,10 @@ namespace TravellingThiefProblemSolver.Model
                 //int citiIdFirst = solution.TripPlan[ThreadSafeRandom.ThisThreadsRandom.Next(solution.TripPlan.Length)].CityId;
                 //int citiIdFirst = this.TripPlan[i].CityId;
 
-                double num = ThreadSafeRandom.ThisThreadsRandom.NextDouble();
+                //double num = ThreadSafeRandom.ThisThreadsRandom.NextDouble();
+                double num = _rnd.NextDouble();
+
+
                 if (num <= Env.MUT_RATE)
                 {
                     int inTripListIdSecond = ThreadSafeRandom.ThisThreadsRandom.Next(this.TripPlan.Length);

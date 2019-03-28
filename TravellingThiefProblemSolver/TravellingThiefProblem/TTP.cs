@@ -217,7 +217,8 @@ namespace TravellingThiefProblemSolver.TravellingSalesmanProblem
 
             while ( newGeneration.Count <= Env.POP_SIZE)
             {
-                double rndNum = ThreadSafeRandom.ThisThreadsRandom.NextDouble();
+                //double rndNum = ThreadSafeRandom.ThisThreadsRandom.NextDouble();
+                double rndNum = _rnd.NextDouble();
                 SubjectTraveller child;
                 SubjectTraveller mother = TournamentSelection(Env.CROSS_RATE, Env.TOURNAMENT_SIZE, population);
                 
